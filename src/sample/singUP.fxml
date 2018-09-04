@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SingUpController">
+    <children>
+        <AnchorPane layoutY="84.0" prefHeight="316.0" prefWidth="700.0" style="-fx-background-color: #fafafa;">
+            <children>
+            <TextField fx:id="lastname" layoutX="406.0" layoutY="31.0" prefHeight="35.0" prefWidth="280.0" promptText="Фамилия" />
+                <TextField fx:id="username" layoutX="13.0" layoutY="84.0" prefHeight="35.0" prefWidth="280.0" promptText="Логин" />
+                <Button fx:id="authSinginButtom" layoutX="241.0" layoutY="254.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="220.0" style="-fx-background-color: #2E3348;" text="Зарегистрироваться" textFill="#fafafa">
+                    <font>
+                        <Font name="Microsoft YaHei" size="19.0" />
+                    </font>
+                </Button>
+                <PasswordField fx:id="passwordSinUp" layoutX="406.0" layoutY="84.0" prefHeight="35.0" prefWidth="280.0" promptText="Пароль" />
+            <TextField fx:id="name" layoutX="14.0" layoutY="31.0" prefHeight="35.0" prefWidth="280.0" promptText="Имя" />
+            <TextField fx:id="country" layoutX="211.0" layoutY="187.0" prefHeight="35.0" prefWidth="280.0" promptText="Страна" />
+            <CheckBox fx:id="male" layoutX="219.0" layoutY="130.0" mnemonicParsing="false" selected="true" text="Мужчина" />
+            <CheckBox fx:id="female" layoutX="406.0" layoutY="130.0" mnemonicParsing="false" text="Женщина" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="269.0" layoutY="23.0" prefHeight="42.0" prefWidth="162.0" text="itCompany" textFill="WHITE">
+            <font>
+                <Font name="Microsoft YaHei" size="30.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
