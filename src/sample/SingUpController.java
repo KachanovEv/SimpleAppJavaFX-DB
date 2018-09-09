@@ -45,6 +45,8 @@ public class SingUpController {
     void initialize() {
         DatabaseHandler dbHandler = new DatabaseHandler();
         authSinginButtom.setOnAction(event -> {
+
+          
             dbHandler.singUpUser(name.getText(), lastname.getText(), username.getText(), passwordSinUp.getText(), country.getText(), "Male" );
 
         });

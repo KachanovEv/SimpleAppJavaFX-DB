@@ -2,6 +2,8 @@ package sample;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.Animations.shake;
 
 public class Controller {
 
@@ -39,8 +42,13 @@ public class Controller {
             String loginText = login_field.getText().trim();
             String loginPassword = password_field.getText().trim();
 
-            if(!loginText.equals("") && !loginPassword.equals(""))
-                loginUser(loginText, loginPassword);
+            if(!loginText.equals("") && !loginPassword.equals("")) {
+                try {
+                    loginUser(loginText, loginPassword);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
             else
                 System.out.println("Login and password is empty");
         });
@@ -64,13 +72,44 @@ public class Controller {
         });
     }
 
-    private void loginUser(String loginText, String loginPassword) {
-    }
-}
+    private void loginUser(String loginText, String loginPassword) throws SQLException {
+        DatabaseHandler dbHandler = new DatabaseHandler();
+        User user = new User();
+        user.setUsername(loginText);
+        user.setPassword(loginPassword);
+        ResultSet result =  dbHandler.getUser(user);
+
+        int counter = 0;
+        while(result.next()) {
+            counter++;
+        }
+        if (counter >= 1) {
+
+            loginSingUpButtom.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/sample/app.fxml"));
+
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+        }else {
+                shake userLoginAnim = new shake(login_field);
+                shake userPassAnim = new shake(password_field);
+                userLoginAnim.playAnim();
+                userPassAnim.playAnim();
+            }
+            }
+        }
 
 
 
-//assert login_field != null : "fx:id=\"login_field\" was not injected: check your FXML file 'sample.fxml'.";
-  //      assert authSinginButtom != null : "fx:id=\"authSinginButtom\" was not injected: check your FXML file 'sample.fxml'.";
-    //    assert password_field != null : "fx:id=\"password_field\" was not injected: check your FXML file 'sample.fxml'.";
-      //  assert loginSingUpButtom != null : "fx:id=\"loginSingUpButtom\" was not injected: check your FXML file 'sample.fxml'.";
+
+
